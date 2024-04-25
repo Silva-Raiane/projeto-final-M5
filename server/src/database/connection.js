@@ -14,5 +14,5 @@ export async function tryToConnect(){
         console.log("Error trying to connect to the database.");
     }
 }
-tryToConnect()
+
 export {database};

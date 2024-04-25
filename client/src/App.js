@@ -1,88 +1,21 @@
 import "./App.css";
+// import Post from "./components/post.js";
+// import Header from "./components/header.js";
+import {Routes, Route} from "react-router-dom"
+import Layout from "./components/Layout.js";
+import IndexPage from "./pages/indexPage.js"
+import LoginPage from "./pages/LoginPage.js"
+import RegisterPage from "./pages/registerPage.js"
 
 function App() {
   return (
-    <div className="App">
-      <main>
-        <header>
-          <a href="#" className="logo-type">
-            InsightBytes
-          </a>
-          <nav>
-            <a href="#">Login</a>
-            <a href="#">Register</a>
-          </nav>
-        </header>
-        <div className="post">
-          <div className="image">
-            <img
-              src="https://conteudo.imguol.com.br/c/entretenimento/92/2019/07/09/homem-cansado-sentado-na-cama-1562682676080_v2_900x506.jpg.webp"
-              alt="imagem capa"
-            />
-          </div>
-          <div className="texts">
-            <h2>Mental Exhaustion: Know the signs and what to do to improve</h2>
-            <p className="info">
-              <a className="author">Luciana Borges</a> 
-              <time>2022-06-01 16:45</time>
-            </p>
-            <p className="summary">
-              Dizer que se está mentalmente exausto virou quase lugar-comum nas
-              conversas entre familiares e amigos nos últimos meses. Porém, há
-              de se observar a linha tênue que separa um cansaço que pode ser
-              passageiro de uma enfermidade mais profunda, capaz de se
-              transformar em uma síndrome de burnout.
-            </p>
-          </div>
-        </div>
-
-        <div className="post">
-          <div className="image">
-            <img
-              src="https://conteudo.imguol.com.br/c/entretenimento/92/2019/07/09/homem-cansado-sentado-na-cama-1562682676080_v2_900x506.jpg.webp"
-              alt="imagem capa"
-            />
-          </div>
-          <div className="texts">
-            <h2>Mental Exhaustion: Know the signs and what to do to improve</h2>
-            <p className="info">
-              <a className="author">Luciana Borges</a>
-              <time>2022-06-01 16:45</time>
-            </p>
-            <p className="summary">
-              Dizer que se está mentalmente exausto virou quase lugar-comum nas
-              conversas entre familiares e amigos nos últimos meses. Porém, há
-              de se observar a linha tênue que separa um cansaço que pode ser
-              passageiro de uma enfermidade mais profunda, capaz de se
-              transformar em uma síndrome de burnout.
-            </p>
-          </div>
-        </div>
-
-        <div className="post">
-          <div className="image">
-            <img
-              src="https://conteudo.imguol.com.br/c/entretenimento/92/2019/07/09/homem-cansado-sentado-na-cama-1562682676080_v2_900x506.jpg.webp"
-              alt="imagem capa"
-            />
-          </div>
-          <div className="texts">
-            <h2>Exautão Mental: Conheça os sintomas</h2>
-            <p className="info">
-              <a className="author">Luciana Borges</a>
-              <time>2022-06-01 16:45</time>
-            </p>
-            <p className="summary">
-              Dizer que se está mentalmente exausto virou quase lugar-comum nas
-              conversas entre familiares e amigos nos últimos meses. Porém, há
-              de se observar a linha tênue que separa um cansaço que pode ser
-              passageiro de uma enfermidade mais profunda, capaz de se
-              transformar em uma síndrome de burnout.
-            </p>
-          </div>
-        </div>
-      </main>
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout/>}>
+      <Route index element={<IndexPage/>}/>
+      <Route path="/login" element={<LoginPage/>}/>
+      <Route path="/register" element={<RegisterPage/>}/>
+    </Route>
+    </Routes>
   );
 }
 

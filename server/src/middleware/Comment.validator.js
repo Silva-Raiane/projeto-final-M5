@@ -1,4 +1,4 @@
-import { ERROS } from "../shared/messages";
+import { ERROS } from "../shared/messages.js";
 
 export class CommentValidator{
     async createCommentValidation(req, res, next){

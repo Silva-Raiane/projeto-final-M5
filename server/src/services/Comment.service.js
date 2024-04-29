@@ -22,6 +22,30 @@ export class CommentService{
         }
     }
 
+    async getCommentsFromPost(postId){
+        try{
+            const comments = await CommentModel.findAll({
+                where: {
+                    postId: postId
+                },
+                order: [
+                    ["createdAt", "DESC"], 
+                ]
+            })
+
+            return {
+                statusValue: 200,
+                content: comments,
+                message: `Got ${SUCCESS.COMMENT}`
+            }
+        }catch(error){
+            return {
+                message: error.message,
+                statusValue: 404
+            }
+        }
+    }
+
     async deleteComment(commentId, userId, password){
         try{
             await database.sync()

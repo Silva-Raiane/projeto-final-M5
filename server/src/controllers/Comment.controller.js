@@ -15,6 +15,23 @@ export async function createComment(req, res){
     }
 }
 
+export async function getCommentsFromPost(req, res){
+    try{
+        const { postId } = req.body
+        const response = await instanceCommentService.getCommentsFromPost(postId)
+
+        return res.status(response.statusValue).json({
+            message: response.message,
+            content: response.content
+        })
+    }catch(error){
+        return res.status(404).json({
+            message: error.message
+        })
+    }
+
+}
+
 export async function deleteComment(req, res){
     try{
         const { commentId, userId, password } = req.body

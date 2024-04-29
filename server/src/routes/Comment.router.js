@@ -8,10 +8,10 @@ const instanceCommentValidator = new CommentValidator()
 routerComment.post("/create-comment", instanceCommentValidator.createCommentValidation, async (req, res)=>{
     return await createComment(req, res)
 })
-routerComment.get("/comments/get-from-post", async (req, res) => {
+routerComment.get("/comments/get-from-post", instanceCommentValidator.getCommentsFromPostValidation, async (req, res) => {
     return await getCommentsFromPost(req, res)
 })
-routerComment.delete("/comments/delete", async (req, res)=>{
+routerComment.delete("/comments/delete", instanceCommentValidator.deleteCommentValidation, async (req, res)=>{
     return await deleteComment(req, res)
 })
 

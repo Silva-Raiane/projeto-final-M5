@@ -8,7 +8,7 @@ export class CommentValidator{
 
         for (const field of fields) {
             if (!req.body[field]) {
-                errors.push(`${ERROS.USER_NEEDS} a/an ${field}`);
+                errors.push(`${ERROS.COMMENT_NEEDS} a/an ${field}`);
             }
         }
         
@@ -17,5 +17,33 @@ export class CommentValidator{
         }
         
         next()
+    }
+
+    async getCommentsFromPostValidation(req, res, next){
+        const { postId } = req.body
+        if (!postId){
+            return res.status(404).json({
+                message: `Missing post's id`
+            })
+        }
+        next()
+    }
+
+    async deleteCommentValidation(req, res, next){
+        const { commentId, userId, password } = req.body || {}
+        const fields = ["commentId", "userId", "password"]
+        const errors = []
+
+        for (const field of fields) {
+            if (!req.body[field]) {
+                errors.push(`${ERROS.COMMENT_NEEDS} a/an ${field}`);
+            }
+        }
+        
+        if (errors.length) {
+            return res.status(404).json({ message: errors });
+        }
+        
+        next()   
     }
 }

@@ -1,7 +1,7 @@
 import express from "express"
-import { routerUser } from "./routes/User.routes.js"
-import { routerPost } from "./routes/Post.routes.js"
-import { routerComment } from "./routes/Comment.routes.js"
+import { routerUser } from "./routes/User.router.js"
+import { routerPost } from "./routes/Post.router.js"
+import { routerComment } from "./routes/Comment.router.js"
 import { tryToConnect } from "./database/connection.js"
 
 const server = express()

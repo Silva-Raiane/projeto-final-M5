@@ -1,4 +1,5 @@
 import { UserService } from "../services/User.service.js"
+import { generateAccessToken } from "../authentication/Authenticator.js"
 
 const instanceUsersService = new UserService()
 
@@ -16,6 +17,22 @@ export async function getUser(req, res){
         user: user
     })
     
+}
+
+export async function logInUser(req, res){
+    const { email, password } = req.body
+
+    const userId = await instanceUsersService.userValidation(email, password);
+    if(userId){
+        const token = generateAccessToken(userId)
+        return res.status(200).json({
+            token: token
+        })
+    }
+
+    return res.status(404).json({
+        message: "The email or password is wrong!"
+    })
 }
 
 export async function updateUsersPassword(req, res){

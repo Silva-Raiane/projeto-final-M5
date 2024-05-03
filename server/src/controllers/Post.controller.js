@@ -20,8 +20,8 @@ export async function getPost(req, res){
 
 export async function updateTitle(req, res){
     try{
-        const { newTitle, postId, userId, password } = req.body
-        const response = await instancePostService.updateTitle(userId, postId, password, newTitle)
+        const { newTitle, postId, userId } = req.body
+        const response = await instancePostService.updateTitle(userId, postId, newTitle)
         return res.status(response.statusValue).json({response})
     }catch(error){
         return res.status(404).json({error: error.message})
@@ -30,8 +30,8 @@ export async function updateTitle(req, res){
 
 export async function updateContent(req, res){
     try{
-        const { newContent, postId, userId, password } = req.body
-        const response = await instancePostService.updateContent(userId, postId, password, newContent)
+        const { newContent, postId, userId } = req.body
+        const response = await instancePostService.updateContent(userId, postId, newContent)
         return res.status(response.statusValue).json({response})
     }catch(error){
         return res.status(404).json({error: error.message})

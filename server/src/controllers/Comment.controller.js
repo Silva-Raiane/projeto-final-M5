@@ -34,8 +34,8 @@ export async function getCommentsFromPost(req, res){
 
 export async function deleteComment(req, res){
     try{
-        const { commentId, userId, password } = req.body
-        const response = await instanceCommentService.deleteComment(commentId, userId, password)
+        const { commentId, userId } = req.body
+        const response = await instanceCommentService.deleteComment(commentId, userId)
 
         return res.status(response.statusValue).json({message: response.message})
     }catch(error){

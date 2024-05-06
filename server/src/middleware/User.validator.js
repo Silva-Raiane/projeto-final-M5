@@ -35,10 +35,14 @@ export class UserValidator{
     }
 
     async updatePasswordValidation(req, res, next){
-        const { id, password, newPassword } = req.body;
-        const fields = ["id", "password", "newPassword"];
+        const { password, newPassword } = req.body;
+        const userId = req.userId
+        const fields = ["password", "newPassword"];
         const errors = [];
 
+        if(!userId){
+            errors.push(`The field userId cannot be blank.`)
+        }
         for(const field of fields){
             if(!req.body[field]){
                 errors.push(`The field ${field} cannot be blank.`);
@@ -53,10 +57,14 @@ export class UserValidator{
     }
 
     async updateUsernameValidation(req, res, next){
-        const { id, password, newUsername } = req.body;
-        const fields = ["id", "password", "newUsername"];
+        const { password, newUsername } = req.body;
+        const userId = req.userId
+        const fields = ["password", "newUsername"];
         const errors = [];
 
+        if(!userId){
+            errors.push(`The userId cannot be blank.`)
+        }
         for(const field of fields){
             if(!req.body[field]){
                 errors.push(`The field ${field} cannot be blank.`)
@@ -71,10 +79,11 @@ export class UserValidator{
     }
 
     async deleteUserValidation(req, res, next){
-        const {id, password} = req.body;
+        const {password} = req.body
+        const userId = req.userId
         const errors = [];
-        if(!id){
-            errors.push(`The id cannot be blank.`);
+        if(!userId){
+            errors.push(`The userId cannot be blank.`);
         }
         if(!password){
             errors.push(`The password cannot be blank.`)

@@ -14,11 +14,11 @@ routerUser.post("/login", async (req, res) => {
     return await logInUser(req, res)
 })
 
-routerUser.get("/user/get", instanceUserValidator.getUserValidation,async (req, res) => {
+routerUser.get("/user/get", instanceUserValidator.getUserValidation, async (req, res) => {
     return await getUser(req, res)
 })
 
-routerUser.put("/user/update-username", verifyJWT, instanceUserValidator.updateUsernameValidation,async (req, res) => {
+routerUser.put("/user/update-username", verifyJWT, instanceUserValidator.updateUsernameValidation, async (req, res) => {
     return await updateUsername(req, res)
 })
 

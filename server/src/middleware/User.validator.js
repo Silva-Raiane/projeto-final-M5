@@ -71,10 +71,13 @@ export class UserValidator{
     }
 
     async deleteUserValidation(req, res, next){
-        const {id} = req.body;
+        const {id, password} = req.body;
         const errors = [];
         if(!id){
             errors.push(`The id cannot be blank.`);
+        }
+        if(!password){
+            errors.push(`The password cannot be blank.`)
         }
         if(errors.length){
             return res.status(404).json({errors});

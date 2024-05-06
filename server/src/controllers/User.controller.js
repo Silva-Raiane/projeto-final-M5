@@ -54,7 +54,7 @@ export async function updateUsername(req, res){
 }
 
 export async function deleteUser(req, res){
-    const { id } = req.body
-    const { statusValue, message} = await instanceUsersService.deleteUser(id)
+    const { id, password } = req.body
+    const { statusValue, message} = await instanceUsersService.deleteUser(id, password)
     return res.status(statusValue).json({message: message})
 }

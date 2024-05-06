@@ -105,10 +105,18 @@ export class UserService{
         }
     }
 
-    async deleteUser(id){
+    async deleteUser(userId, password){
         try{
             await database.sync()
-            const user = await UserModel.findByPk(id)
+            const user = await UserModel.findByPk(userId)
+            
+            if(user.password !== password){
+                return {
+                    statusValue: 400,
+                    message: `Wrong password!`
+                }
+            }
+
             user.destroy()
             return {
                 statusValue: 200,

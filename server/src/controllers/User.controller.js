@@ -5,8 +5,14 @@ const instanceUsersService = new UserService()
 
 export async function createUser(req, res){
     const { username, email, password } = req.body
-    const {statusValue, message} = await instanceUsersService.createUser(username, email, password)
-    return res.status(statusValue).json({message: message})
+    const {statusValue, message, userId} = await instanceUsersService.createUser(username, email, password)
+    const userToken = generateAccessToken(userId)
+    return res.status(statusValue).json(
+    {
+        message: message,
+        token: userToken
+    }
+    )
 }
 
 export async function getUser(req, res){

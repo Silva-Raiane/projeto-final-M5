@@ -61,7 +61,7 @@ export class PostService{
         }
     }
 
-    async updateContent(userId, postId, password, newContent){
+    async updateContent(userId, postId, newContent){
         try{
             const user = await UserModel.findByPk(userId)
             const post = await PostModel.findByPk(postId)
@@ -69,7 +69,6 @@ export class PostService{
             if(!user) return {statusValue: 404, message:`The user doesn't exist.`}
             if(!post) return {statusValue: 404, message:`The post doesn't exist.`}
             if(user.id !== post.creatorId) return {statusValue: 404, message: "Only the creator can update the content."}
-            if(user.password !== password) return {statusValue: 404, message:`${ERROS.WRONG_PASSWORD}`}
 
             post.update({content: newContent})
             return {

@@ -3,8 +3,9 @@ import { PostService } from "../services/Post.service.js"
 const instancePostService = new PostService()
 
 export async function createPost(req, res){
-    const {title, content, creatorId} = req.body
-    const { statusValue, message} = await instancePostService.createPost(title, content, creatorId)
+    const {title, content} = req.body
+    const userId = req.userId
+    const { statusValue, message} = await instancePostService.createPost(title, content, userId)
     return res.status(statusValue).json({message: message})
 }
 
@@ -20,7 +21,8 @@ export async function getPost(req, res){
 
 export async function updateTitle(req, res){
     try{
-        const { newTitle, postId, userId } = req.body
+        const { newTitle, postId } = req.body
+        const userId = req.userId
         const response = await instancePostService.updateTitle(userId, postId, newTitle)
         return res.status(response.statusValue).json({response})
     }catch(error){
@@ -30,7 +32,8 @@ export async function updateTitle(req, res){
 
 export async function updateContent(req, res){
     try{
-        const { newContent, postId, userId } = req.body
+        const { newContent, postId } = req.body
+        const userId = req.userId
         const response = await instancePostService.updateContent(userId, postId, newContent)
         return res.status(response.statusValue).json({response})
     }catch(error){
@@ -40,7 +43,8 @@ export async function updateContent(req, res){
 
 export async function deletePost(req, res){
     try{
-        const { userId, postId, password} = req.body
+        const { postId, password} = req.body
+        const userId = req.userId
         const response = await instancePostService.deletePost(userId, postId, password)
         
         return res.status(response.statusValue).json({response})

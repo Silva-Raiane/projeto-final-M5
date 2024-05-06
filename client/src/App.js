@@ -1,6 +1,4 @@
 import "./App.css";
-// import Post from "./components/post.js";
-// import Header from "./components/header.js";
 import {Routes, Route} from "react-router-dom"
 import Layout from "./components/Layout.js";
 import IndexPage from "./pages/indexPage.js"

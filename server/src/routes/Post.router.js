@@ -11,7 +11,7 @@ routerPost.post("/create-post", verifyJWT, instancePostValidator.createPostValid
     return await createPost(req, res)
 })
 
-routerPost.get("/posts/get", verifyJWT, instancePostValidator.getPostValidation, async (req, res) =>{
+routerPost.get("/posts/get", instancePostValidator.getPostValidation, async (req, res) =>{
     return await getPost(req, res)
 })
 

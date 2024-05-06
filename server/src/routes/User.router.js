@@ -14,7 +14,7 @@ routerUser.post("/login", async (req, res) => {
     return await logInUser(req, res)
 })
 
-routerUser.get("/user/get", verifyJWT, instanceUserValidator.getUserValidation,async (req, res) => {
+routerUser.get("/user/get", instanceUserValidator.getUserValidation,async (req, res) => {
     return await getUser(req, res)
 })
 

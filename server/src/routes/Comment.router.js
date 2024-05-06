@@ -9,7 +9,7 @@ const instanceCommentValidator = new CommentValidator()
 routerComment.post("/create-comment", verifyJWT,instanceCommentValidator.createCommentValidation, async (req, res)=>{
     return await createComment(req, res)
 })
-routerComment.get("/comments/get-from-post", verifyJWT, instanceCommentValidator.getCommentsFromPostValidation, async (req, res) => {
+routerComment.get("/comments/get-from-post", instanceCommentValidator.getCommentsFromPostValidation, async (req, res) => {
     return await getCommentsFromPost(req, res)
 })
 routerComment.delete("/comments/delete", verifyJWT, instanceCommentValidator.deleteCommentValidation, async (req, res)=>{

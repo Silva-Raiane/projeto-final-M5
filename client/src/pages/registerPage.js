@@ -22,7 +22,9 @@ export default function RegisterPage() {
           });
     
           if (response.status === 200) {
+            const { token } = response.data;
             alert('Registration successful');
+            localStorage.setItem("token", token);
           } else {
             alert('Registration failed');
           }

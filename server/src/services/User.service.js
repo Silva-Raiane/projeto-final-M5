@@ -20,6 +20,26 @@ export class UserService{
         }
     }
 
+    async userValidation(email, password){
+        try{
+            await database.sync()
+            const user = await UserModel.findOne({
+                where:{
+                    email: email
+                }
+            })
+
+            if(!user || user.password !== password){
+                return null
+            }
+
+            return user.id
+        }catch(error){
+            console.log(error.message)
+            return null
+        }
+    }
+
     async getUser(id){
         try{
             await database.sync()
@@ -85,10 +105,18 @@ export class UserService{
         }
     }
 
-    async deleteUser(id){
+    async deleteUser(userId, password){
         try{
             await database.sync()
-            const user = await UserModel.findByPk(id)
+            const user = await UserModel.findByPk(userId)
+            
+            if(user.password !== password){
+                return {
+                    statusValue: 400,
+                    message: `Wrong password!`
+                }
+            }
+
             user.destroy()
             return {
                 statusValue: 200,

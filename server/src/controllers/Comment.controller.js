@@ -4,8 +4,9 @@ const instanceCommentService = new CommentService()
 
 export async function createComment(req, res){
     try{
-        const { comment, creatorId, postId} = req.body
-        const response = await instanceCommentService.createComment(comment, creatorId, postId)
+        const { comment, postId} = req.body
+        const userId = req.userId
+        const response = await instanceCommentService.createComment(comment, userId, postId)
 
         return res.status(response.statusValue).json({
             message: response.message
@@ -34,8 +35,9 @@ export async function getCommentsFromPost(req, res){
 
 export async function deleteComment(req, res){
     try{
-        const { commentId, userId, password } = req.body
-        const response = await instanceCommentService.deleteComment(commentId, userId, password)
+        const { commentId } = req.body
+        const userId = req.userId
+        const response = await instanceCommentService.deleteComment(commentId, userId)
 
         return res.status(response.statusValue).json({message: response.message})
     }catch(error){

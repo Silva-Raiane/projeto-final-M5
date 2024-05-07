@@ -2,10 +2,14 @@ import { ERROS } from "../shared/messages.js";
 
 export class CommentValidator{
     async createCommentValidation(req, res, next){
-        const { comment, creatorId, postId } = req.body || {}
-        const fields = ["comment", "creatorId", "postId"]
+        const { comment, postId } = req.body || {}
+        const userId = req.userId
+        const fields = ["comment", "postId"]
         const errors = []
 
+        if(!userId){
+            errors.push(`The field userId cannot be blank.`)
+        }
         for (const field of fields) {
             if (!req.body[field]) {
                 errors.push(`${ERROS.COMMENT_NEEDS} a/an ${field}`);
@@ -30,10 +34,14 @@ export class CommentValidator{
     }
 
     async deleteCommentValidation(req, res, next){
-        const { commentId, userId, password } = req.body || {}
-        const fields = ["commentId", "userId", "password"]
+        const { commentId, password } = req.body || {}
+        const userId = req.userId
+        const fields = ["commentId", "password"]
         const errors = []
 
+        if(!userId){
+            errors.push(`The field userId cannot be blank.`)
+        }
         for (const field of fields) {
             if (!req.body[field]) {
                 errors.push(`${ERROS.COMMENT_NEEDS} a/an ${field}`);

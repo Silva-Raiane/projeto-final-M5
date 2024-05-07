@@ -38,8 +38,24 @@ export class PostService{
         }
     }
 
+    async getAllPosts(){
+        try{
+            await database.sync()
+            const posts = await PostModel.findAll({})
+            return {
+                statusValue: 200,
+                posts: posts
+            }
+        }catch(error){
+            return {
+                statusValue: 404,
+                message: error.message
+            }
+        }
+    }
 
-    async updateTitle(userId, postId,password, newTitle){
+
+    async updateTitle(userId, postId, newTitle){
         try{
             const user = await UserModel.findByPk(userId)
             const post = await PostModel.findByPk(postId)
@@ -47,7 +63,6 @@ export class PostService{
             if(!user) return {statusValue: 404, message:`The user doesn't exist`}
             if(!post) return {statusValue: 404, message:`The post doesn't exist.`}
             if(user.id !== post.creatorId) return {statusValue: 404, message:`Only the creator can change the title!`}
-            if(user.password !== password) return {statusValue:404, message:`${ERROS.WRONG_PASSWORD}`}
 
             post.update({title:newTitle})
             return {
@@ -62,7 +77,7 @@ export class PostService{
         }
     }
 
-    async updateContent(userId, postId, password, newContent){
+    async updateContent(userId, postId, newContent){
         try{
             const user = await UserModel.findByPk(userId)
             const post = await PostModel.findByPk(postId)
@@ -70,7 +85,6 @@ export class PostService{
             if(!user) return {statusValue: 404, message:`The user doesn't exist.`}
             if(!post) return {statusValue: 404, message:`The post doesn't exist.`}
             if(user.id !== post.creatorId) return {statusValue: 404, message: "Only the creator can update the content."}
-            if(user.password !== password) return {statusValue: 404, message:`${ERROS.WRONG_PASSWORD}`}
 
             post.update({content: newContent})
             return {

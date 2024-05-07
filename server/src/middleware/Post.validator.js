@@ -1,10 +1,14 @@
 import { ERROS } from "../shared/messages.js";
 export class PostValidator{
     async createPostValidation(req, res, next){
-        const { title, content, creatorId } = req.body || {}
-        const fields = ["title", "content", "creatorId"]
+        const { title, content } = req.body || {}
+        const userId = req.userId
+        const fields = ["title", "content"]
         const errors = []
 
+        if(!userId){
+            errors.push(`The field userId cannot be blank.`)
+        }
         for (const field of fields) {
             if (!req.body[field]) {
                 errors.push(`${ERROS.USER_NEEDS} a/an ${field}`);
@@ -37,10 +41,14 @@ export class PostValidator{
     }
 
     async updateTitleValidation(req, res, next){
-        const { newTitle, postId, userId, password } = req.body || {}
-        const fields = ["newTitle", "postId", "userId", "password"]
+        const { newTitle, postId, password } = req.body || {}
+        const userId = req.userId
+        const fields = ["newTitle", "postId", "password"]
         const erros = []
 
+        if(!userId){
+            erros.push(`The field userId cannot be blank.`)
+        }
         for(const field of fields){
             if(!req.body[field]){
                 erros.push(`${ERROS.POST_NEEDS} a/an ${field}`)
@@ -55,10 +63,14 @@ export class PostValidator{
     }
 
     async updateContentValidation(req, res, next){
-        const { newContent, postId, userId, password } = req.body || {}
-        const fields = ["newContent", "postId", "userId", "password"]
+        const { newContent, postId, password } = req.body || {}
+        const userId = req.userId
+        const fields = ["newContent", "postId", "password"]
         const erros = []
-
+        
+        if(!userId){
+            erros.push(`The field userId cannot be blank.`)
+        }
         for(const field of fields){
             if(!req.body[field]){
                 erros.push(`${ERROS.POST_NEEDS} a/an ${field}`)
@@ -73,10 +85,14 @@ export class PostValidator{
     }
 
     async deletePostValidation(req, res, next){
-        const { postId, userId, password } = req.body || {}
-        const fields = ["postId", "userId", "password"]
+        const { postId, password } = req.body || {}
+        const userId = req.userId
+        const fields = ["postId", "password"]
         const erros = []
 
+        if(!userId){
+            erros.push(`The field userId cannot be blank.`)
+        }
         for(const field of fields){
             if(!req.body[field]){
                 erros.push(`${ERROS.POST_NEEDS} a/an ${field}`)

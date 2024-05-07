@@ -46,7 +46,7 @@ export class CommentService{
         }
     }
 
-    async deleteComment(commentId, userId, password){
+    async deleteComment(commentId, userId){
         try{
             await database.sync()
             const comment = await CommentModel.findByPk(commentId)
@@ -54,7 +54,6 @@ export class CommentService{
             const user = await UserModel.findByPk(userId)
 
             if(comment.creatorId!==user.id || post.creatorId !== user.id){return {statusValue: 404, message: "Only the creator of the comment or post can delete it!"}}
-            else if(user.password !== password){return {statusValue: 404, message: ERROS.WRONG_PASSWORD}}
 
             await comment.destroy()
 

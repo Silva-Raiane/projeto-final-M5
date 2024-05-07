@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { createPost, getPost, updateTitle, updateContent, deletePost } from "../controllers/Post.controller.js" 
+import { createPost, getPost, getAllPosts,updateTitle, updateContent, deletePost } from "../controllers/Post.controller.js" 
 import { PostValidator } from "../middleware/Post.validator.js"
 import { verifyJWT } from "../authentication/Authenticator.js"
 
@@ -13,6 +13,10 @@ routerPost.post("/create-post", verifyJWT, instancePostValidator.createPostValid
 
 routerPost.get("/posts/get", instancePostValidator.getPostValidation, async (req, res) =>{
     return await getPost(req, res)
+})
+
+routerPost.get("/posts/getAll", async (req, res) => {
+    return await getAllPosts(req, res)
 })
 
 routerPost.patch("/posts/update-title", verifyJWT, instancePostValidator.updateTitleValidation, async (req, res)=>{

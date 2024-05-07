@@ -19,6 +19,18 @@ export async function getPost(req, res){
     }
 }
 
+export async function getAllPosts(req, res){
+    try{
+        const response = await instancePostService.getAllPosts();
+        return res.status(response.statusValue).json({
+            response
+        })        
+    }catch(error){
+        return res.status(404).json({error: error.message})
+    }
+
+}
+
 export async function updateTitle(req, res){
     try{
         const { newTitle, postId } = req.body

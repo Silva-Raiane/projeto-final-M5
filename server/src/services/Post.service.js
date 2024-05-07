@@ -38,6 +38,22 @@ export class PostService{
         }
     }
 
+    async getAllPosts(){
+        try{
+            await database.sync()
+            const posts = await PostModel.findAll({})
+            return {
+                statusValue: 200,
+                posts: posts
+            }
+        }catch(error){
+            return {
+                statusValue: 404,
+                message: error.message
+            }
+        }
+    }
+
 
     async updateTitle(userId, postId, newTitle){
         try{

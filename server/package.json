@@ -1,29 +1,14 @@
-
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "type": "module",
-  "scripts": {
-    "start": "nodemon server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "main": "src/server.js",
   "dependencies": {
-    "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "jsonwebtoken": "^8.5.1",
-    "mailgen": "^2.0.27",
-    "mongodb-memory-server": "^8.10.2",
-    "mongoose": "^6.8.0",
-    "morgan": "^1.10.0",
-    "multer": "^1.4.5-lts.1",
-    "nodemailer": "^6.8.0",
-    "nodemon": "^2.0.20",
-    "otp-generator": "^4.0.0",
-    "type": "module"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.9.7",
+    "nodemon": "^3.1.0",
+    "sequelize": "^6.37.3",
+    "sqlite3": "^5.1.7"
   }
 }

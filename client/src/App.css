@@ -8,52 +8,6 @@ main{
 	margin: 0 auto;
 }
 
-header{
-	display:flex;
-  justify-content: space-between;
-	align-items: center;
-	margin-bottom:20px;
-}
-header a{
-	text-decoration:none;
-	color: inherit;
-}
-header a.logo-type{
-	font-weight:bold;
-  font-size: 1.2rem;
-}
-header nav{
-	display: flex;
-	gap: 20px
-}
-
-.post{
-	display:grid;
-  grid-template-columns: 0.9fr 1fr;
-  gap: 10px;
-  margin-bottom: 35px;
-}
-
-.post .image img{
-	width:100%
-
-}
-.post .texts h2{
-  margin:0;
-  font-size: 1.4rem;
-}
-
-.post .texts .info{
-  display: flex;
-  margin:6px 0;
-  color: #888;
-  font-size: .7rem;
-  font-weight: bold;
-  gap: 10px;
-}
-.post .texts .info .author{
-  color: #333;
-}
 
 /* LOGIN AND REGISTER FORMS */
 

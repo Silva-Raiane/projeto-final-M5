@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../App.css";
-import Post from "../components/post.js";
+import Post from "../components/Posts/Post.jsx";
 import axios from "axios";
 
 export default function IndexPage() {

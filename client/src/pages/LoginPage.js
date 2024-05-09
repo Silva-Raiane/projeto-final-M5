@@ -12,11 +12,9 @@ export default function LoginPage() {
     e.preventDefault();
 
     try {
-      const response = await axios.get("http://localhost:8001/user/get", {
-        params: {
-          email: email,
-          password: password,
-        },
+      const response = await axios.post("https://projeto-final-m5-15w5.onrender.com/login", {
+          email,
+          password
       });
 
       if (response.data && response.data.loggedIn) {

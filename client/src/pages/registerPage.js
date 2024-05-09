@@ -11,17 +11,16 @@ export default function RegisterPage() {
         ev.preventDefault();
     
         try {
-          const response = await axios.post('http://localhost:8001/api/register-user', {
+          const response = await axios.post('https://projeto-final-m5-15w5.onrender.com/register-user', {
             username,
             email,
             password
           }, {
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': '	application/json'
             }
           });
-    
-          if (response.status === 200) {
+          if (response.status === 201) {
             const { token } = response.data;
             alert('Registration successful');
             localStorage.setItem("token", token);
@@ -29,29 +28,27 @@ export default function RegisterPage() {
             alert('Registration failed');
           }
         } catch (error) {
-          console.error('Error during registration:', error);
+          console.error('Error during registration:', error.response ? error.response.data : error);
           alert('Error during registration');
         }
       }
-    return(
-    
-        <div class="page">
-            <form method="POST" class="formRegister" onSubmit={register}>
+      return(
+
+        <div className="page">
+            <form method="POST" className="formRegister" onSubmit={register}>
                 <h1>Register</h1>
                 <p>Enter your access details in the field below.</p>
-                <label for="username">User Name</label>
-                <input type="text" placeholder="Digite seu e-mail" autofocus="true" value={username} onChange={(ev) => setUsername(ev.target.value)} />
-                <label for="email">E-mail</label>
-                <input type="email" placeholder="Digite seu e-mail" autofocus="true" value={email} onChange={(ev) => setEmail(ev.target.value)}/>
-                <label for="password">Password</label>
-                <input type="password" placeholder="Digite seu e-mail" value={password} onChange={(ev) => setPassword(ev.target.value)} />
-                
-                <input type="submit" value="Register" class="btn" />
+                <label htmlFor="username">Username</label>
+                <input id="username" type="text" placeholder="Enter your username" autoFocus={true} value={username} onChange={(ev) => setUsername(ev.target.value)} autoComplete="username" />
+                <label htmlFor="email">E-mail</label>
+                <input id="email" type="email" placeholder="Enter your email" autoFocus={true} value={email} onChange={(ev) => setEmail(ev.target.value)} autoComplete="email" />
+                <label htmlFor="password">Password</label>
+                <input id="password" type="password" placeholder="Enter your password" value={password} onChange={(ev) => setPassword(ev.target.value)} autoComplete="new-password" />
+                <input type="submit" value="Register" className="btn" />
             </form>
         </div>
     );
 }
-
 // return(
     
 //     <div class="page">

@@ -1,5 +1,4 @@
-import "../App.css";
-import Header from "./header.js";
+import Header from "../Header/Header.jsx";
 import {Outlet} from "react-router-dom";
 
 export default function Layout(){

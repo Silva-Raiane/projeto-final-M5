@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../App.css";
 
-
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,13 +12,14 @@ export default function LoginPage() {
 
     try {
       const response = await axios.post("https://projeto-final-m5-15w5.onrender.com/login", {
-          email,
-          password
+        email,
+        password
       });
 
-      if (response.data && response.data.loggedIn) {
-        alert("Login successful! Redirect to profile or dashboard.");
-        window.location.href = "/"; 
+      if (response.data && response.status === 200){
+        localStorage.setItem("token", response.data.token);
+
+        window.location.replace("/");
       } else {
         setLoginError("Login failed. Please check your credentials.");
       }
@@ -56,22 +56,3 @@ export default function LoginPage() {
     </div>
   );
 }
-
-// import "../App.css"
-// export default function LoginPage(){
-//     return(
-//         <div class="page">
-//         <form method="POST" class="formLogin">
-//             <h1>Login</h1>
-//             <p>Enter your access details in the field below.</p>
-//             <label for="email">E-mail</label>
-//             <input type="email" placeholder="Digite seu e-mail" autofocus="true" />
-//             <label for="password">Password</label>
-//             <input type="password" placeholder="Digite seu e-mail" />
-//             <a href="/">Esqueci minha senha</a>
-//             <input type="submit" value="Acessar" class="btn" />
-//         </form>
-//     </div>
-//     );
-// }
-

@@ -1,4 +1,5 @@
 import { ERROS } from "../shared/messages.js";
+
 export class PostValidator{
     async createPostValidation(req, res, next){
         const { title, content } = req.body || {}

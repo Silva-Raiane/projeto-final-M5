@@ -1,9 +1,6 @@
-import {Sequelize} from "sequelize";
+import { Sequelize } from "sequelize";
 
-const database = new Sequelize("db_insight_bytes", "root", "root", {
-    host: "localhost",
-    dialect: "mysql"
-});
+const database = new Sequelize("postgresql://db_insight_bytes_owner:uUIc8MZdBEN6@ep-late-boat-a5f0niug.us-east-2.aws.neon.tech/db_insight_bytes?sslmode=require");
 
 export async function tryToConnect(){
     try{

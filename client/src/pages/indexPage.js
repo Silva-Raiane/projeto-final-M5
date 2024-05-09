@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../App.css";
 import Post from "../components/Posts/Post.jsx";
+import CreatePost from "../components/CreatePost/CreatePost.jsx";
 import axios from "axios";
 
 export default function IndexPage() {
@@ -16,6 +17,7 @@ export default function IndexPage() {
 
   return (
     <div>
+      <CreatePost />
       <h1>Posts</h1>
       <>
         {posts.map((item) => (

@@ -24,7 +24,7 @@ export class CommentValidator{
     }
 
     async getCommentsFromPostValidation(req, res, next){
-        const { postId } = req.body
+        const { postId } = req.params
         if (!postId){
             return res.status(404).json({
                 message: `Missing post's id`

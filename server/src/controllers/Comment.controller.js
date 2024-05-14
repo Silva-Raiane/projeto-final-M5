@@ -18,7 +18,7 @@ export async function createComment(req, res){
 
 export async function getCommentsFromPost(req, res){
     try{
-        const { postId } = req.body
+        const { postId } = req.params
         const response = await instanceCommentService.getCommentsFromPost(postId)
 
         return res.status(response.statusValue).json({

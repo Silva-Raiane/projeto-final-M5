@@ -21,7 +21,7 @@ export default function IndexPage() {
       <h1>Posts</h1>
       <>
         {posts.map((item) => (
-          <Post key={item.id} title={item.title} createdAt={item.createdAt} content={item.content} />
+          <Post key={item.id} id={item.id} title={item.title} createdAt={item.createdAt} content={item.content} />
         ))}
       </>
     </div>
